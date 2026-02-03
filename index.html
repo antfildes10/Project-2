@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Rock, Paper, Scissors, Lizard, Spock is an extended version of the classic game, offering more complexity and fun. Play now and enjoy an engaging, interactive experience!">
         <title>Rock, Paper, Scissors, Lizard, Spock</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Roboto:wght@400;500;700&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
@@ -33,23 +36,23 @@
                     <p id="score">Score: Player <span id="player-score-result">0</span> - Computer <span id="computer-score-result">0</span></p>
                 </div>
                 <div id="game">
-                    <button data-choice="rock" aria-label="Rock" class="choice-btn choice-btn--rock">
+                    <button type="button" data-choice="rock" aria-label="Rock" class="choice-btn choice-btn--rock">
                         <i class="fas fa-hand-rock" aria-hidden="true"></i>
                         <span>Rock</span>
                     </button>
-                    <button data-choice="paper" aria-label="Paper" class="choice-btn choice-btn--paper">
+                    <button type="button" data-choice="paper" aria-label="Paper" class="choice-btn choice-btn--paper">
                         <i class="fas fa-hand-paper" aria-hidden="true"></i>
                         <span>Paper</span>
                     </button>
-                    <button data-choice="scissors" aria-label="Scissors" class="choice-btn choice-btn--scissors">
+                    <button type="button" data-choice="scissors" aria-label="Scissors" class="choice-btn choice-btn--scissors">
                         <i class="fas fa-hand-scissors" aria-hidden="true"></i>
                         <span>Scissors</span>
                     </button>
-                    <button data-choice="lizard" aria-label="Lizard" class="choice-btn choice-btn--lizard">
+                    <button type="button" data-choice="lizard" aria-label="Lizard" class="choice-btn choice-btn--lizard">
                         <i class="fas fa-hand-lizard" aria-hidden="true"></i>
                         <span>Lizard</span>
                     </button>
-                    <button data-choice="spock" aria-label="Spock" class="choice-btn choice-btn--spock">
+                    <button type="button" data-choice="spock" aria-label="Spock" class="choice-btn choice-btn--spock">
                         <i class="fas fa-hand-spock" aria-hidden="true"></i>
                         <span>Spock</span>
                     </button>
@@ -84,7 +87,7 @@
                 <p id="win-percentage">Win Percentage: 0%</p>
                 <p id="games-played">Games Played: 0</p>
                 <div id="reset-div">
-                    <button id="reset-button"><i class="fas fa-redo" aria-hidden="true"></i> Reset Scores</button>
+                    <button type="button" id="reset-button"><i class="fas fa-redo" aria-hidden="true"></i> Reset Scores</button>
                 </div>
             </section>
 
@@ -103,11 +106,11 @@
             </section>
 
             <!-- Custom Modal for Game End -->
-            <div id="game-end-modal" class="modal" role="dialog" aria-modal="true">
+            <div id="game-end-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="final-message">
                 <div class="modal-content">
-                    <span class="close" id="close-modal" role="button" tabindex="0" aria-label="Close">&times;</span>
+                    <button type="button" class="close" id="close-modal" aria-label="Close">&times;</button>
                     <p id="final-message"></p>
-                    <button id="play-again-button">Play Again</button>
+                    <button type="button" id="play-again-button">Play Again</button>
                 </div>
             </div>
         </main>

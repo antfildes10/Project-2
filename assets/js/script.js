@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* globals document */
+
 // Game state variables
 let playerScore = 0;
 let computerScore = 0;
@@ -102,8 +105,9 @@ function setResultColor(result) {
 function pulseScore() {
     playerScoreEl.style.animation = 'none';
     computerScoreEl.style.animation = 'none';
-    playerScoreEl.offsetHeight;
-    computerScoreEl.offsetHeight;
+    // Force a reflow so the animation restarts when re-applied
+    void playerScoreEl.offsetHeight;
+    void computerScoreEl.offsetHeight;
     playerScoreEl.style.animation = 'scorePulse 0.3s ease';
     computerScoreEl.style.animation = 'scorePulse 0.3s ease';
 }
@@ -147,11 +151,13 @@ function showFinalMessage() {
         finalMessageEl.classList.add('result--draw');
     }
     gameEndModalEl.style.display = 'block';
+    document.getElementById('play-again-button').focus();
 }
 
-/** Hides the game-over modal when the close button is clicked */
+/** Hides the game-over modal and returns focus to the game area */
 function closeModal() {
     gameEndModalEl.style.display = 'none';
+    document.querySelector('.choice-btn').focus();
 }
 
 /** Resets all scores and game state to initial values for a new match */
@@ -179,14 +185,15 @@ gameButtons.forEach(function (button) {
 // Attach event listener to reset button
 document.getElementById('reset-button').addEventListener('click', resetGame);
 
-// Attach event listeners to modal close button (click and keyboard)
+// Attach event listener to modal close button
 document.getElementById('close-modal').addEventListener('click', closeModal);
-document.getElementById('close-modal').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        closeModal();
-    }
-});
 
 // Attach event listener to Play Again button in modal
 document.getElementById('play-again-button').addEventListener('click', resetGame);
+
+// Close modal with Escape key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && gameEndModalEl.style.display === 'block') {
+        closeModal();
+    }
+});
