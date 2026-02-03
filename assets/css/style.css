@@ -138,6 +138,40 @@ button i {
     color: #333;
 }
 
+/* How to Play Section */
+#how-to-play {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+    text-align: left;
+}
+
+#how-to-play h2 {
+    text-align: center;
+}
+
+#how-to-play ul {
+    list-style: none;
+    padding: 0;
+}
+
+#how-to-play li {
+    padding: 5px 0;
+    font-size: 1em;
+}
+
+#how-to-play li i {
+    margin-right: 8px;
+    color: #0e27e1;
+}
+
+#how-to-play p {
+    text-align: center;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -211,9 +245,14 @@ button i {
         text-align: center;
     }
 
-    #game-content{
-        padding:5px;
-        max-width:350px;
+    #game-content {
+        padding: 5px;
+        max-width: 350px;
+    }
+
+    #how-to-play {
+        max-width: 350px;
+        padding: 10px;
     }
 }
 
