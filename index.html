@@ -12,57 +12,81 @@
         <a class="skip-link" href="#game">Skip to game</a>
         <header>
             <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
+            <div id="score-bar">
+                <div class="score-group">
+                    <span class="score-label">You</span>
+                    <span class="score-value" id="player-score">0</span>
+                </div>
+                <div class="score-group score-group--round">
+                    <span id="round-indicator">Round 1 of 10</span>
+                </div>
+                <div class="score-group">
+                    <span class="score-label">CPU</span>
+                    <span class="score-value" id="computer-score">0</span>
+                </div>
+            </div>
         </header>
         <main>
-            <div id="container">
-                <section id="scoreboard">
-                    <h2>Scoreboard</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col">Player</th>
-                                <th scope="col">Score</th>
-                            </tr>
-                        </thead>
-                        <tbody id="scoreboard-body">
-                            <tr id="player-row">
-                                <td>Player</td>
-                                <td id="player-score">0</td>
-                            </tr>
-                            <tr id="computer-row">
-                                <td>Computer</td>
-                                <td id="computer-score">0</td>
-                            </tr>
-                            <tr id="draw-row">
-                                <td>Draws</td>
-                                <td id="draw-count">0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p id="win-ratio">Wins: 0 - Losses: 0 - Draws: 0</p>
-                    <p id="win-percentage">Win Percentage: 0%</p>
-                    <p id="games-played">Games Played: 0</p>
-                    <div id="reset-div">
-                        <button id="reset-button">Reset Scores</button>
-                    </div>
-                </section>
+            <section id="game-content">
+                <div id="result" aria-live="polite">
+                    <p id="message">Choose your move!</p>
+                    <p id="score">Score: Player <span id="player-score-result">0</span> - Computer <span id="computer-score-result">0</span></p>
+                </div>
+                <div id="game">
+                    <button data-choice="rock" aria-label="Rock" class="choice-btn choice-btn--rock">
+                        <i class="fas fa-hand-rock" aria-hidden="true"></i>
+                        <span>Rock</span>
+                    </button>
+                    <button data-choice="paper" aria-label="Paper" class="choice-btn choice-btn--paper">
+                        <i class="fas fa-hand-paper" aria-hidden="true"></i>
+                        <span>Paper</span>
+                    </button>
+                    <button data-choice="scissors" aria-label="Scissors" class="choice-btn choice-btn--scissors">
+                        <i class="fas fa-hand-scissors" aria-hidden="true"></i>
+                        <span>Scissors</span>
+                    </button>
+                    <button data-choice="lizard" aria-label="Lizard" class="choice-btn choice-btn--lizard">
+                        <i class="fas fa-hand-lizard" aria-hidden="true"></i>
+                        <span>Lizard</span>
+                    </button>
+                    <button data-choice="spock" aria-label="Spock" class="choice-btn choice-btn--spock">
+                        <i class="fas fa-hand-spock" aria-hidden="true"></i>
+                        <span>Spock</span>
+                    </button>
+                </div>
+            </section>
 
-                <section id="game-content">
-                    <div id="result" aria-live="polite">
-                        <p id="round-indicator">Round 1 of 10</p>
-                        <p id="message"></p>
-                        <p id="score">Score: Player <span id="player-score-result">0</span> - Computer <span id="computer-score-result">0</span></p>
-                    </div>
-                    <div id="game">
-                        <p>Choose your move:</p>
-                        <button data-choice="rock" aria-label="Rock"><i class="fas fa-hand-rock" aria-hidden="true"></i> Rock</button>
-                        <button data-choice="paper" aria-label="Paper"><i class="fas fa-hand-paper" aria-hidden="true"></i> Paper</button>
-                        <button data-choice="scissors" aria-label="Scissors"><i class="fas fa-hand-scissors" aria-hidden="true"></i> Scissors</button>
-                        <button data-choice="lizard" aria-label="Lizard"><i class="fas fa-hand-lizard" aria-hidden="true"></i> Lizard</button>
-                        <button data-choice="spock" aria-label="Spock"><i class="fas fa-hand-spock" aria-hidden="true"></i> Spock</button>
-                    </div>
-                </section>
-            </div>
+            <section id="scoreboard">
+                <h2>Scoreboard</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Player</th>
+                            <th scope="col">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scoreboard-body">
+                        <tr id="player-row">
+                            <td>Player</td>
+                            <td id="player-score-table">0</td>
+                        </tr>
+                        <tr id="computer-row">
+                            <td>Computer</td>
+                            <td id="computer-score-table">0</td>
+                        </tr>
+                        <tr id="draw-row">
+                            <td>Draws</td>
+                            <td id="draw-count">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="win-ratio">Wins: 0 - Losses: 0 - Draws: 0</p>
+                <p id="win-percentage">Win Percentage: 0%</p>
+                <p id="games-played">Games Played: 0</p>
+                <div id="reset-div">
+                    <button id="reset-button"><i class="fas fa-redo" aria-hidden="true"></i> Reset Scores</button>
+                </div>
+            </section>
 
             <!-- How to Play Section -->
             <section id="how-to-play">
@@ -83,6 +107,7 @@
                 <div class="modal-content">
                     <span class="close" id="close-modal" role="button" tabindex="0" aria-label="Close">&times;</span>
                     <p id="final-message"></p>
+                    <button id="play-again-button">Play Again</button>
                 </div>
             </div>
         </main>
