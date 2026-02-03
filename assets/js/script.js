@@ -118,7 +118,7 @@ function resetGame() {
     computerWins = 0;
     drawCount = 0;
     gamesPlayed = 0;
-    updateDisplay('');
+    updateDisplay('Game has been reset. Choose your move!');
     updateScoreboard();
 }
 
