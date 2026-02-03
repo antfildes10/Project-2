@@ -41,6 +41,11 @@ function determineWinner(player, computer) {
 }
 
 function play(playerChoice) {
+    if (!choices.includes(playerChoice)) {
+        updateDisplay("Invalid choice. Please select a valid move.");
+        return;
+    }
+
     if (gamesPlayed >= maxGames) {
         updateDisplay("Game limit reached. Please reset to play again.");
         showFinalMessage();
