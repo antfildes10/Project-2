@@ -12,6 +12,8 @@ const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 // Cache DOM elements for efficiency and maintainability
 const playerScoreEl = document.getElementById('player-score');
 const computerScoreEl = document.getElementById('computer-score');
+const playerScoreTableEl = document.getElementById('player-score-table');
+const computerScoreTableEl = document.getElementById('computer-score-table');
 const drawCountEl = document.getElementById('draw-count');
 const winRatioEl = document.getElementById('win-ratio');
 const winPercentageEl = document.getElementById('win-percentage');
@@ -57,19 +59,22 @@ function play(playerChoice) {
 
     const computerChoice = getRandomChoice();
     const winner = determineWinner(playerChoice, computerChoice);
-    let message = `You chose ${playerChoice}, computer chose ${computerChoice}. `;
+    let message = 'You chose ' + playerChoice + ', computer chose ' + computerChoice + '. ';
 
     if (winner === 'player') {
         playerScore++;
         playerWins++;
         message += "You win!";
+        setResultColor('win');
     } else if (winner === 'computer') {
         computerScore++;
         computerWins++;
         message += "Computer wins!";
+        setResultColor('lose');
     } else {
         drawCount++;
         message += "It's a draw!";
+        setResultColor('draw');
     }
 
     gamesPlayed++;
@@ -87,14 +92,32 @@ function calculateWinPercentage() {
     return totalGames === 0 ? 0 : ((playerWins / totalGames) * 100).toFixed(2);
 }
 
+/** Applies a color class to the message element based on the round result */
+function setResultColor(result) {
+    messageEl.classList.remove('result--win', 'result--lose', 'result--draw');
+    messageEl.classList.add('result--' + result);
+}
+
+/** Triggers a brief scale animation on score value elements in the header */
+function pulseScore() {
+    playerScoreEl.style.animation = 'none';
+    computerScoreEl.style.animation = 'none';
+    playerScoreEl.offsetHeight;
+    computerScoreEl.offsetHeight;
+    playerScoreEl.style.animation = 'scorePulse 0.3s ease';
+    computerScoreEl.style.animation = 'scorePulse 0.3s ease';
+}
+
 /** Updates all score-related DOM elements including the scoreboard, score display, and round indicator */
 function updateScoreboard() {
     playerScoreEl.innerText = playerScore;
     computerScoreEl.innerText = computerScore;
+    playerScoreTableEl.innerText = playerScore;
+    computerScoreTableEl.innerText = computerScore;
     drawCountEl.innerText = drawCount;
-    winRatioEl.innerText = `Wins: ${playerWins} - Losses: ${computerWins} - Draws: ${drawCount}`;
-    winPercentageEl.innerText = `Win Percentage: ${calculateWinPercentage()}%`;
-    gamesPlayedEl.innerText = `Games Played: ${gamesPlayed}`;
+    winRatioEl.innerText = 'Wins: ' + playerWins + ' - Losses: ' + computerWins + ' - Draws: ' + drawCount;
+    winPercentageEl.innerText = 'Win Percentage: ' + calculateWinPercentage() + '%';
+    gamesPlayedEl.innerText = 'Games Played: ' + gamesPlayed;
     playerScoreResultEl.innerText = playerScore;
     computerScoreResultEl.innerText = computerScore;
     if (gamesPlayed >= maxGames) {
@@ -102,6 +125,7 @@ function updateScoreboard() {
     } else {
         roundIndicatorEl.innerText = 'Round ' + (gamesPlayed + 1) + ' of ' + maxGames;
     }
+    pulseScore();
 }
 
 /** Updates the result message displayed to the user */
@@ -111,12 +135,16 @@ function updateDisplay(message) {
 
 /** Displays the game-over modal with the final match result */
 function showFinalMessage() {
+    finalMessageEl.classList.remove('result--win', 'result--lose', 'result--draw');
     if (playerWins > computerWins) {
         finalMessageEl.innerText = "Congratulations, You Won!";
+        finalMessageEl.classList.add('result--win');
     } else if (computerWins > playerWins) {
         finalMessageEl.innerText = "Hard Luck, Computer Wins!";
+        finalMessageEl.classList.add('result--lose');
     } else {
         finalMessageEl.innerText = "It's a Draw! Well Played!";
+        finalMessageEl.classList.add('result--draw');
     }
     gameEndModalEl.style.display = 'block';
 }
@@ -134,8 +162,10 @@ function resetGame() {
     computerWins = 0;
     drawCount = 0;
     gamesPlayed = 0;
+    messageEl.classList.remove('result--win', 'result--lose', 'result--draw');
     updateDisplay('Game has been reset. Choose your move!');
     updateScoreboard();
+    closeModal();
 }
 
 // Attach event listeners to game buttons
@@ -157,3 +187,6 @@ document.getElementById('close-modal').addEventListener('keydown', function (e) 
         closeModal();
     }
 });
+
+// Attach event listener to Play Again button in modal
+document.getElementById('play-again-button').addEventListener('click', resetGame);
