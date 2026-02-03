@@ -1,12 +1,26 @@
+// Game state variables
 let playerScore = 0;
 let computerScore = 0;
 let playerWins = 0;
 let computerWins = 0;
-let drawCount = 0; // New variable to track draws
+let drawCount = 0;
 let gamesPlayed = 0;
 const maxGames = 10;
 
 const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+
+// Cache DOM elements for efficiency and maintainability
+const playerScoreEl = document.getElementById('player-score');
+const computerScoreEl = document.getElementById('computer-score');
+const drawCountEl = document.getElementById('draw-count');
+const winRatioEl = document.getElementById('win-ratio');
+const winPercentageEl = document.getElementById('win-percentage');
+const gamesPlayedEl = document.getElementById('games-played');
+const messageEl = document.getElementById('message');
+const playerScoreResultEl = document.getElementById('player-score-result');
+const computerScoreResultEl = document.getElementById('computer-score-result');
+const finalMessageEl = document.getElementById('final-message');
+const gameEndModalEl = document.getElementById('game-end-modal');
 
 function getRandomChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
@@ -64,24 +78,31 @@ function calculateWinPercentage() {
 }
 
 function updateScoreboard() {
-    document.getElementById('player-score').innerText = playerScore;
-    document.getElementById('computer-score').innerText = computerScore;
-    document.getElementById('draw-count').innerText = drawCount; // Display draw count
-    document.getElementById('win-ratio').innerText = `Wins: ${playerWins} - Losses: ${computerWins} - Draws: ${drawCount}`;
-    document.getElementById('win-percentage').innerText = `Win Percentage: ${calculateWinPercentage()}%`;
-    document.getElementById('games-played').innerText = `Games Played: ${gamesPlayed}`;
+    playerScoreEl.innerText = playerScore;
+    computerScoreEl.innerText = computerScore;
+    drawCountEl.innerText = drawCount;
+    winRatioEl.innerText = `Wins: ${playerWins} - Losses: ${computerWins} - Draws: ${drawCount}`;
+    winPercentageEl.innerText = `Win Percentage: ${calculateWinPercentage()}%`;
+    gamesPlayedEl.innerText = `Games Played: ${gamesPlayed}`;
+    playerScoreResultEl.innerText = playerScore;
+    computerScoreResultEl.innerText = computerScore;
 }
 
 function updateDisplay(message) {
-    document.getElementById('message').innerText = message;
+    messageEl.innerText = message;
 }
 
 function showFinalMessage() {
     if (playerWins > computerWins) {
-        alert("Congratulations, You Won!");
+        finalMessageEl.innerText = "Congratulations, You Won!";
     } else {
-        alert("Hard Luck, Computer Wins!");
+        finalMessageEl.innerText = "Hard Luck, Computer Wins!";
     }
+    gameEndModalEl.style.display = 'block';
+}
+
+function closeModal() {
+    gameEndModalEl.style.display = 'none';
 }
 
 function resetGame() {
@@ -89,24 +110,22 @@ function resetGame() {
     computerScore = 0;
     playerWins = 0;
     computerWins = 0;
-    drawCount = 0; // Reset draw count
+    drawCount = 0;
     gamesPlayed = 0;
     updateDisplay('');
     updateScoreboard();
 }
 
-function showFinalMessage() {
-    const finalMessage = document.getElementById('final-message');
-    if (playerWins > computerWins) {
-        finalMessage.innerText = "Congratulations, You Won!";
-    } else {
-        finalMessage.innerText = "Hard Luck, Computer Wins!";
-    }
-    document.getElementById('game-end-modal').style.display = 'block';
-}
+// Attach event listeners to game buttons
+const gameButtons = document.querySelectorAll('[data-choice]');
+gameButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        play(this.getAttribute('data-choice'));
+    });
+});
 
-function closeModal() {
-    document.getElementById('game-end-modal').style.display = 'none';
-}
+// Attach event listener to reset button
+document.getElementById('reset-button').addEventListener('click', resetGame);
 
-
+// Attach event listener to modal close button
+document.getElementById('close-modal').addEventListener('click', closeModal);
