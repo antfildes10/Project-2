@@ -279,6 +279,7 @@ This project was made possible with the help of various resources for learning H
 - **W3Schools**: Comprehensive tutorials on web development.
 - **MDN Web Docs**: Excellent documentation for web standards and best practices.
 - **Microsoft Copilot**: Provided guidance on project structure and content.
+- **Claude Code (Anthropic)**: Provided guidance on code quality and best practices.
 
 ## License
 
