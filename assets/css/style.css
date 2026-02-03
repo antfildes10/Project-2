@@ -98,6 +98,13 @@ button i {
     100% {opacity: 1;}
 }
 
+#round-indicator {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #0e27e1;
+    margin-bottom: 5px;
+}
+
 #message {
     font-size: 1.2em;
     animation: fadeIn 1s ease-in-out;

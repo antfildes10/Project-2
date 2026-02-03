@@ -21,6 +21,7 @@ const playerScoreResultEl = document.getElementById('player-score-result');
 const computerScoreResultEl = document.getElementById('computer-score-result');
 const finalMessageEl = document.getElementById('final-message');
 const gameEndModalEl = document.getElementById('game-end-modal');
+const roundIndicatorEl = document.getElementById('round-indicator');
 
 function getRandomChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
@@ -86,6 +87,11 @@ function updateScoreboard() {
     gamesPlayedEl.innerText = `Games Played: ${gamesPlayed}`;
     playerScoreResultEl.innerText = playerScore;
     computerScoreResultEl.innerText = computerScore;
+    if (gamesPlayed >= maxGames) {
+        roundIndicatorEl.innerText = 'Game Over';
+    } else {
+        roundIndicatorEl.innerText = 'Round ' + (gamesPlayed + 1) + ' of ' + maxGames;
+    }
 }
 
 function updateDisplay(message) {
