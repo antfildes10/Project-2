@@ -23,10 +23,12 @@ const finalMessageEl = document.getElementById('final-message');
 const gameEndModalEl = document.getElementById('game-end-modal');
 const roundIndicatorEl = document.getElementById('round-indicator');
 
+/** Generates a random computer choice from the available options */
 function getRandomChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+/** Compares player and computer choices and returns the winner ('player', 'computer', or 'draw') */
 function determineWinner(player, computer) {
     if (player === computer) return 'draw';
     if ((player === 'rock' && (computer === 'scissors' || computer === 'lizard')) ||
@@ -40,6 +42,7 @@ function determineWinner(player, computer) {
     }
 }
 
+/** Main game function - validates input, processes a round, updates scores and display */
 function play(playerChoice) {
     if (!choices.includes(playerChoice)) {
         updateDisplay("Invalid choice. Please select a valid move.");
@@ -78,11 +81,13 @@ function play(playerChoice) {
     }
 }
 
+/** Calculates the player's win percentage excluding draws */
 function calculateWinPercentage() {
     const totalGames = playerWins + computerWins;
     return totalGames === 0 ? 0 : ((playerWins / totalGames) * 100).toFixed(2);
 }
 
+/** Updates all score-related DOM elements including the scoreboard, score display, and round indicator */
 function updateScoreboard() {
     playerScoreEl.innerText = playerScore;
     computerScoreEl.innerText = computerScore;
@@ -99,10 +104,12 @@ function updateScoreboard() {
     }
 }
 
+/** Updates the result message displayed to the user */
 function updateDisplay(message) {
     messageEl.innerText = message;
 }
 
+/** Displays the game-over modal with the final match result */
 function showFinalMessage() {
     if (playerWins > computerWins) {
         finalMessageEl.innerText = "Congratulations, You Won!";
@@ -112,10 +119,12 @@ function showFinalMessage() {
     gameEndModalEl.style.display = 'block';
 }
 
+/** Hides the game-over modal when the close button is clicked */
 function closeModal() {
     gameEndModalEl.style.display = 'none';
 }
 
+/** Resets all scores and game state to initial values for a new match */
 function resetGame() {
     playerScore = 0;
     computerScore = 0;
