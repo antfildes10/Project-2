@@ -17,6 +17,7 @@ Rock, Paper, Scissors, Lizard, Spock is an extended version of the traditional R
 - [Responsive Design](#responsive-design)
 - [Testing](#testing)
 - [Validation Testing](#validation-testing)
+- [Bugs](#bugs)
 - [Deployment](#deployment)
 - [Local Development](#local-development)
 - [Project Structure](#project-structure)
@@ -133,6 +134,19 @@ All code has been validated using official validation tools to ensure it meets w
 - **Tool**: [JSHint](https://jshint.com/)
 - **Result**: No significant issues found. The JavaScript code passes validation without errors.
 
+## Bugs
+
+### Fixed Bugs
+
+- **Score display not updating:** The "Score: Player 0 - Computer 0" line in the game area did not update during gameplay. This was caused by the `updateScoreboard()` function not targeting the `player-score-result` and `computer-score-result` span elements. Fixed by adding these elements to the function so both the scoreboard table and the score display line update after each round.
+- **Duplicate function definition:** The `showFinalMessage()` function was defined twice in the JavaScript file. The first version used a browser `alert()` popup, while the second used a styled modal. The second definition silently overwrote the first. Fixed by removing the `alert()` version and keeping only the modal version.
+- **HTML validation error:** A `<style>` element was placed inside the `<body>`, which is not valid HTML. Fixed by moving the Google Fonts `@import` to the external CSS file and removing the redundant Font Awesome `@import` that was already loaded via a `<link>` element in the `<head>`.
+- **Inline event handlers:** All buttons used inline `onclick` attributes, which caused JSHint to flag the functions as unused and did not follow separation of concerns. Fixed by removing all `onclick` attributes and attaching event listeners in the JavaScript file using `addEventListener`.
+
+### Unfixed Bugs
+
+- No known unfixed bugs.
+
 ## Deployment
 
 This project is deployed using GitHub Pages. The following steps were used to deploy the site:
@@ -141,7 +155,7 @@ This project is deployed using GitHub Pages. The following steps were used to de
 2. Click on the **Settings** tab.
 3. In the left sidebar, click on **Pages**.
 4. Under **Source**, select **Deploy from a branch**.
-5. Under **Branch**, select **main** and **/root**, then click **Save**.
+5. Under **Branch**, select **main** and **/ (root)**, then click **Save**.
 6. The site will be deployed automatically. The live link will appear at the top of the GitHub Pages section once the deployment is complete.
 
 The live site can be accessed at: https://antfildes10.github.io/Project-2/
