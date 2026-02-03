@@ -9,6 +9,23 @@ body {
     background: linear-gradient(to right, #b003a8, #e76705);
 }
 
+/* Skip navigation link for keyboard accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #0e27e1;
+    color: #fff;
+    padding: 8px 16px;
+    z-index: 100;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 h2 {
     text-align: center;
 }
@@ -26,8 +43,10 @@ header h1 {
 }
 
 #container {
-    display: inline-block;
+    display: flex;
     justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 main {
@@ -51,8 +70,9 @@ main {
     background: #fff;
     padding: 20px;
     border-radius: 40px;
-    box-shadow: 0 0 100px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
     max-width: 400px;
+    margin: auto;
 }
 
 table {
@@ -83,6 +103,12 @@ button {
 button:hover {
     background-color: #4d55e2;
     transform: scale(1.1);
+}
+
+button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px #0e27e1;
 }
 
 button i {
@@ -207,7 +233,7 @@ button i {
 
 /* The Close Button */
 .close {
-    color: #aaa;
+    color: #555;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -218,6 +244,11 @@ button i {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.close:focus-visible {
+    outline: 3px solid #0e27e1;
+    outline-offset: 2px;
 }
 
 #final-message {
@@ -240,7 +271,7 @@ button i {
     #scoreboard {
         margin-right: auto;
         margin-bottom: 20px;
-        margin-top: -30px;
+        margin-top: 0;
         width: 100%;
         padding: 5px;
     }

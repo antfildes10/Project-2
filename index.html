@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
+        <a class="skip-link" href="#game">Skip to game</a>
         <header>
             <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
         </header>
@@ -19,8 +20,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Player</th>
-                                <th>Score</th>
+                                <th scope="col">Player</th>
+                                <th scope="col">Score</th>
                             </tr>
                         </thead>
                         <tbody id="scoreboard-body">
@@ -47,7 +48,7 @@
                 </section>
 
                 <section id="game-content">
-                    <div id="result">
+                    <div id="result" aria-live="polite">
                         <p id="round-indicator">Round 1 of 10</p>
                         <p id="message"></p>
                         <p id="score">Score: Player <span id="player-score-result">0</span> - Computer <span id="computer-score-result">0</span></p>
@@ -80,7 +81,7 @@
             <!-- Custom Modal for Game End -->
             <div id="game-end-modal" class="modal" role="dialog" aria-modal="true">
                 <div class="modal-content">
-                    <span class="close" id="close-modal" role="button" aria-label="Close">&times;</span>
+                    <span class="close" id="close-modal" role="button" tabindex="0" aria-label="Close">&times;</span>
                     <p id="final-message"></p>
                 </div>
             </div>
