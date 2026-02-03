@@ -113,8 +113,10 @@ function updateDisplay(message) {
 function showFinalMessage() {
     if (playerWins > computerWins) {
         finalMessageEl.innerText = "Congratulations, You Won!";
-    } else {
+    } else if (computerWins > playerWins) {
         finalMessageEl.innerText = "Hard Luck, Computer Wins!";
+    } else {
+        finalMessageEl.innerText = "It's a Draw! Well Played!";
     }
     gameEndModalEl.style.display = 'block';
 }
@@ -147,5 +149,11 @@ gameButtons.forEach(function (button) {
 // Attach event listener to reset button
 document.getElementById('reset-button').addEventListener('click', resetGame);
 
-// Attach event listener to modal close button
+// Attach event listeners to modal close button (click and keyboard)
 document.getElementById('close-modal').addEventListener('click', closeModal);
+document.getElementById('close-modal').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeModal();
+    }
+});
