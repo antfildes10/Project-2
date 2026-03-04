@@ -279,7 +279,18 @@ This project was made possible with the help of various resources for learning H
 - **W3Schools**: Comprehensive tutorials on web development.
 - **MDN Web Docs**: Excellent documentation for web standards and best practices.
 - **Microsoft Copilot**: Provided guidance on project structure and content.
-- **Claude (AI Assistant)**: Used as a development tool to review code quality, identify bugs, and suggest improvements to HTML validation and accessibility compliance.
+
+### Use of AI Tools
+
+During development, I used **Claude** (an AI assistant by Anthropic) as a code review and debugging tool. All game logic, HTML structure, CSS styling, and design decisions were written by me. Claude was used in the following ways:
+
+- **Code quality review**: Reviewing my existing code for formatting inconsistencies, indentation issues, and clean code standards.
+- **Bug identification**: Helping identify bugs such as the duplicate function definition, the score display not updating, and the missing draw condition in the game-over logic.
+- **HTML/CSS validation**: Flagging issues like the `<style>` element inside `<body>` and inline `onclick` handlers that did not follow separation of concerns.
+- **Accessibility improvements**: Suggesting additions such as ARIA attributes, skip navigation, keyboard focus indicators, and `prefers-reduced-motion` support.
+- **README guidance**: Assisting with structuring the README to include all required sections such as deployment steps, validation testing, and bug documentation.
+
+Claude did not generate the core game logic or design. It was used similarly to a linter, code reviewer, or tutor — providing feedback on code I had written, which I then reviewed and applied myself.
 
 ## License
 
